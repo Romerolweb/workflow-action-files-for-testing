@@ -1,0 +1,20 @@
+name: Hello World Workflow that should be ignored due to it's location
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello-world-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # <-- kalgoorlie should find actions from the "uses"
+      
+      - uses: ./.github/actions/hello
+        id: hello
+        with:
+          name: Sebastian
+      - run: Result was "${{ steps.hello.outputs.greeting }}"

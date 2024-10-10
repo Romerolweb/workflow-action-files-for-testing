@@ -1,0 +1,15 @@
+name: 'ci/cd: pipeline'
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # <-- kalgoorlie should find actions from the "uses"
+      - uses: actions/setup-node@main # <-- kalgoorlie should find actions from the "uses"

@@ -1,0 +1,23 @@
+name: 'Hello World Action'
+description: 'A simple composite action that prints Hello World!'
+inputs:
+  name:
+    description: 'The name to greet'
+    required: true
+    default: 'World'
+outputs:
+  greeting:
+    description: 'The greeting message'
+runs:
+  using: 'composite'
+  steps:
+    # Demonstration of an action
+    - name: Checkout code
+       uses: actions/checkout@v4 # <-- kalgoorlie should find actions from the "uses"
+       
+    - name: 'Print Hello World'
+      run: echo "Hello ${{ inputs.name }}"
+    
+    - name: 'Set greeting output'
+      id: set-output
+      run: echo "greeting=Hello ${{ inputs.name }}" >> $GITHUB_OUTPUT
